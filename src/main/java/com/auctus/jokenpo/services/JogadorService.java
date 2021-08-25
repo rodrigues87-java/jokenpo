@@ -48,4 +48,9 @@ public class JogadorService {
         return jogadorRepository.save(jogadorEncontrado);
     }
 
+    public Jogador findById(Long id){
+
+        return jogadorRepository.findJogadorById(id);
+    }
+
 }

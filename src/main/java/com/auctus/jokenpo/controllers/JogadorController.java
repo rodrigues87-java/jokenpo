@@ -16,9 +16,6 @@ public class JogadorController {
     JogadorService jogadorService;
 
 
-    @Autowired
-    JogadorRepository jogadorRepository;
-
     @GetMapping("/")
     public List<Jogador> listarJogadores(){
 
