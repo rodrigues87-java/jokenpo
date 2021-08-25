@@ -30,7 +30,6 @@ public class Jogador implements Serializable {
 
     }
 
-
     public Long getId() {
         return id;
     }

@@ -1,7 +1,6 @@
 package com.auctus.jokenpo.services;
 
 
-import com.auctus.jokenpo.exceptions.ObjectNotFoundException;
 import com.auctus.jokenpo.models.Jogador;
 import com.auctus.jokenpo.repository.JogadorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
