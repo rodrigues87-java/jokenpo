@@ -1,7 +1,6 @@
 package com.auctus.jokenpo.controllers;
 
 import com.auctus.jokenpo.models.Jogador;
-import com.auctus.jokenpo.repository.JogadorRepository;
 import com.auctus.jokenpo.services.JogadorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

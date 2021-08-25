@@ -45,7 +45,7 @@ public class JogadorService {
 
         jogadorEncontrado.setNome(jogador.getNome());
 
-        return jogadorRepository.save(jogadorEncontrado);
+        return save(jogadorEncontrado);
     }
 
     public Jogador findById(Long id){
