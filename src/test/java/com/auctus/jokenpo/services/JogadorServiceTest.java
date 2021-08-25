@@ -8,11 +8,9 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.doReturn;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @SpringBootTest
 class JogadorServiceTest {
@@ -73,11 +71,13 @@ class JogadorServiceTest {
     void testEDelete() {
         Jogador person = new Jogador(1L, "paulo");
 
-        when(jogadorService.delete(1L)).thenReturn(true);
+        doNothing().when(person);
 
-        boolean resposta = jogadorService.delete(person.getId());
+        jogadorService.delete(person.getId());
 
-        assertTrue(resposta);
+        Jogador jogador = jogadorService.findById(1L);
+
+        assertNull(jogador);
     }
 
 

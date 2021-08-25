@@ -1,6 +1,7 @@
 package com.auctus.jokenpo.services;
 
 
+import com.auctus.jokenpo.exceptions.ObjectNotFoundException;
 import com.auctus.jokenpo.models.Jogador;
 import com.auctus.jokenpo.repository.JogadorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,42 +16,37 @@ public class JogadorService {
     JogadorRepository jogadorRepository;
 
     public List<Jogador> findAll(){
-
         return jogadorRepository.findAll();
     }
 
     public Jogador save(Jogador jogador) {
+        if(jogador.getNome() == null){
+            throw new RuntimeException("O nome do jogador não pode ser vazio");
+
+        }
         return jogadorRepository.save(jogador);
     }
 
-    public boolean delete(Long id) {
-        Jogador jogadorEncontrado =  jogadorRepository.findJogadorById(id);
-
-        if (jogadorEncontrado ==null){
-            return false;
-
-        }
-
+    public void delete(Long id) {
+        Jogador jogadorEncontrado = findById(id);
         jogadorRepository.delete(jogadorEncontrado);
-        return true;
     }
 
     public Jogador editar(Long id, Jogador jogador) {
-        Jogador jogadorEncontrado =  jogadorRepository.findJogadorById(id);
-
-        if (jogadorEncontrado ==null){
-            return null;
-
-        }
-
+        Jogador jogadorEncontrado =  findById(id);
         jogadorEncontrado.setNome(jogador.getNome());
-
         return save(jogadorEncontrado);
     }
 
     public Jogador findById(Long id){
 
-        return jogadorRepository.findJogadorById(id);
+        Jogador jogador = jogadorRepository.findJogadorById(id);
+
+        if (jogador == null){
+            throw new RuntimeException("jogador não encontrado");
+        }
+
+        return jogador;
     }
 
 }
