@@ -1,9 +1,6 @@
 package com.auctus.jokenpo.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 
@@ -14,8 +11,10 @@ public class Jogador implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotEmpty(message = "Nome do jogador não pode ser em branco")
     private String nome;
+
+    @ManyToOne
+    private Rodada rodada;
 
     public Jogador(String nome) {
         this.nome = nome;
@@ -26,8 +25,12 @@ public class Jogador implements Serializable {
         this.nome = nome;
     }
 
-    public Jogador() {
+    public Rodada getRodada() {
+        return rodada;
+    }
 
+    public void setRodada(Rodada rodada) {
+        this.rodada = rodada;
     }
 
     public Long getId() {

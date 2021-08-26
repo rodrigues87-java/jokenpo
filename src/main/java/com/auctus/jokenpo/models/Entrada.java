@@ -12,19 +12,21 @@ public class Entrada implements Serializable {
 
     @OneToOne
     private Jogada jogada;
+
     @OneToOne
     private Jogador jogador;
 
+    @ManyToOne
+    private Rodada rodada;
 
-    public Entrada(Jogada jogada, Jogador jogador) {
-        this.jogada = jogada;
-        this.jogador = jogador;
+
+    public Rodada getRodada() {
+        return rodada;
     }
 
-    public Entrada() {
-
+    public void setRodada(Rodada rodada) {
+        this.rodada = rodada;
     }
-
 
     public Long getId() {
         return id;
