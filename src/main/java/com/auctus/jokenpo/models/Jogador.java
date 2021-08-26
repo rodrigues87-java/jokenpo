@@ -25,6 +25,10 @@ public class Jogador implements Serializable {
         this.nome = nome;
     }
 
+    public Jogador() {
+
+    }
+
     public Rodada getRodada() {
         return rodada;
     }

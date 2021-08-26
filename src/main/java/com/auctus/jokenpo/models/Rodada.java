@@ -27,6 +27,8 @@ public class Rodada implements Serializable {
         this.jogadoresVitoriososRodada = jogadoresVitoriososRodada;
     }
 
+
+
     public Long getId() {
         return id;
     }

@@ -14,6 +14,7 @@ public class Regras implements Serializable {
 
     @ManyToOne
     private Jogada jogadaDefencora;
+
     private boolean vitoria_ofencora;
 
     public Regras(Jogada jogadaOfencora, Jogada jogadaDefencora) {
@@ -25,6 +26,30 @@ public class Regras implements Serializable {
 
     }
 
+
+    public Jogada getJogadaOfencora() {
+        return jogadaOfencora;
+    }
+
+    public void setJogadaOfencora(Jogada jogadaOfencora) {
+        this.jogadaOfencora = jogadaOfencora;
+    }
+
+    public Jogada getJogadaDefencora() {
+        return jogadaDefencora;
+    }
+
+    public void setJogadaDefencora(Jogada jogadaDefencora) {
+        this.jogadaDefencora = jogadaDefencora;
+    }
+
+    public boolean getVitoria_ofencora() {
+        return vitoria_ofencora;
+    }
+
+    public void setVitoria_ofencora(boolean vitoria_ofencora) {
+        this.vitoria_ofencora = vitoria_ofencora;
+    }
 
     public Long getId() {
         return id;

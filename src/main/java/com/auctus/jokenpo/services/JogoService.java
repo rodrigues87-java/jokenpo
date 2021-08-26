@@ -3,6 +3,7 @@ package com.auctus.jokenpo.services;
 
 import com.auctus.jokenpo.models.Jogo;
 import com.auctus.jokenpo.models.Jogo;
+import com.auctus.jokenpo.models.Rodada;
 import com.auctus.jokenpo.repository.JogoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,9 @@ public class JogoService {
 
     @Autowired
     JogoRepository jogoRepository;
+
+    @Autowired
+    RodadaService rodadaService;
 
     public List<Jogo> findAll(){
         return jogoRepository.findAll();

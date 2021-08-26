@@ -1,5 +1,6 @@
 package com.auctus.jokenpo.models;
 
+import org.springframework.beans.factory.annotation.Value;
 import springfox.documentation.annotations.ApiIgnore;
 
 import javax.persistence.*;
@@ -21,6 +22,20 @@ public class Entrada implements Serializable {
     @ManyToOne
     private Rodada rodada;
 
+    @Column(columnDefinition = "integer default 0")
+    private int quantidadeDeVitorias;
+
+    public int getQuantidadeDeVitorias() {
+        return quantidadeDeVitorias;
+    }
+
+    public void setQuantidadeDeVitorias(int quantidadeDeVitorias) {
+        this.quantidadeDeVitorias = quantidadeDeVitorias;
+    }
+
+    public void adicionarVitoria(){
+        this.quantidadeDeVitorias = this.quantidadeDeVitorias +1;
+    }
 
     public Rodada getRodada() {
         return rodada;
