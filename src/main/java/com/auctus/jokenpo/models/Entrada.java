@@ -1,5 +1,7 @@
 package com.auctus.jokenpo.models;
 
+import springfox.documentation.annotations.ApiIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -43,6 +45,7 @@ public class Entrada implements Serializable {
     public void setJogada(Jogada jogada) {
         this.jogada = jogada;
     }
+
 
     public Jogador getJogador() {
         return jogador;

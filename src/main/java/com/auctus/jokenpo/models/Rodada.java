@@ -17,7 +17,15 @@ public class Rodada implements Serializable {
     List<Entrada> entradas;
 
     @OneToMany
-    private List<Jogador> jogadoresVitoriosos;
+    private List<Jogador> jogadoresVitoriososRodada;
+
+    public List<Jogador> getJogadoresVitoriososRodada() {
+        return jogadoresVitoriososRodada;
+    }
+
+    public void setJogadoresVitoriososRodada(List<Jogador> jogadoresVitoriososRodada) {
+        this.jogadoresVitoriososRodada = jogadoresVitoriososRodada;
+    }
 
     public Long getId() {
         return id;
