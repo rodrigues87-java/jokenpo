@@ -1,20 +1,25 @@
 package com.auctus.jokenpo.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.swagger.annotations.ApiModelProperty;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
+import java.lang.annotation.Documented;
 
 @Entity
 public class Jogador implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @ApiModelProperty(readOnly = true)
     private Long id;
 
     private String nome;
 
-    @ManyToOne
-    private Rodada rodada;
+
+
 
     public Jogador(String nome) {
         this.nome = nome;
@@ -29,13 +34,7 @@ public class Jogador implements Serializable {
 
     }
 
-    public Rodada getRodada() {
-        return rodada;
-    }
 
-    public void setRodada(Rodada rodada) {
-        this.rodada = rodada;
-    }
 
     public Long getId() {
         return id;

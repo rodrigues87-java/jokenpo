@@ -1,12 +1,16 @@
 package com.auctus.jokenpo.models;
 
+import io.swagger.annotations.ApiModelProperty;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
 public class Regras implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @ApiModelProperty(readOnly = true)
     private Long id;
 
     @ManyToOne

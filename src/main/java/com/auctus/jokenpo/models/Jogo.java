@@ -1,5 +1,7 @@
 package com.auctus.jokenpo.models;
 
+import io.swagger.annotations.ApiModelProperty;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -9,6 +11,7 @@ public class Jogo implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @ApiModelProperty(readOnly = true)
     private Long id;
 
     @OneToMany

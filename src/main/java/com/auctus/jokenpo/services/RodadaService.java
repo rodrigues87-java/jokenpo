@@ -38,16 +38,19 @@ public class RodadaService {
             for(int j= 0; j < entradas.size(); j++){
 
                 if(j>i){
-                    System.out.println(entradas.get(i).getId() + " e " + entradas.get(j).getId());
+                    if(entradas.get(i).getJogada() != entradas.get(j).getJogada()){
+                        System.out.println(entradas.get(i).getId() + " e " + entradas.get(j).getId());
 
-                    Regras regras = regrasRepository.findRegrasByJogadaOfencoraAndJogadaDefencora(entradas.get(i).getJogada(), entradas.get(j).getJogada());
+                        Regras regras = regrasRepository.findRegrasByJogadaOfencoraAndJogadaDefencora(entradas.get(i).getJogada(), entradas.get(j).getJogada());
 
-                    if(regras.getVitoria_ofencora()){
-                        entradas.get(i).adicionarVitoria();
+                        if(regras.getVitoria_ofencora()){
+                            entradas.get(i).adicionarVitoria();
+                        }
+                        else {
+                            entradas.get(j).adicionarVitoria();
+                        }
                     }
-                    else {
-                        entradas.get(j).adicionarVitoria();
-                    }
+
 
                 }
 
@@ -55,10 +58,12 @@ public class RodadaService {
 
         }
 
+        rodada.findJogadoresVitoriosos();
 
+        if (rodada.getJogadoresVitoriososRodada().size() > 1 ){
+            rodadaRepository.save(rodada);
 
-        System.out.println("");
-
+        }
 
         return rodadaRepository.save(rodada);
     }

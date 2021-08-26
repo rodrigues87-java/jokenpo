@@ -1,5 +1,7 @@
 package com.auctus.jokenpo.models;
 
+import io.swagger.annotations.ApiModelProperty;
+import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Value;
 import springfox.documentation.annotations.ApiIgnore;
 
@@ -7,10 +9,11 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-public class Entrada implements Serializable {
+public class Entrada  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @ApiModelProperty(readOnly = true)
     private Long id;
 
     @OneToOne
@@ -19,17 +22,16 @@ public class Entrada implements Serializable {
     @OneToOne
     private Jogador jogador;
 
-    @ManyToOne
-    private Rodada rodada;
 
-    @Column(columnDefinition = "integer default 0")
-    private int quantidadeDeVitorias;
 
-    public int getQuantidadeDeVitorias() {
+    @Value("${props.isFPL:true}")
+    private Long quantidadeDeVitorias=0L;
+
+    public Long getQuantidadeDeVitorias() {
         return quantidadeDeVitorias;
     }
 
-    public void setQuantidadeDeVitorias(int quantidadeDeVitorias) {
+    public void setQuantidadeDeVitorias(Long quantidadeDeVitorias) {
         this.quantidadeDeVitorias = quantidadeDeVitorias;
     }
 
@@ -37,13 +39,6 @@ public class Entrada implements Serializable {
         this.quantidadeDeVitorias = this.quantidadeDeVitorias +1;
     }
 
-    public Rodada getRodada() {
-        return rodada;
-    }
-
-    public void setRodada(Rodada rodada) {
-        this.rodada = rodada;
-    }
 
     public Long getId() {
         return id;
@@ -69,4 +64,7 @@ public class Entrada implements Serializable {
     public void setJogador(Jogador jogador) {
         this.jogador = jogador;
     }
+
+
+
 }
