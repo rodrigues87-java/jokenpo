@@ -21,6 +21,8 @@ public class Rodada {
     @OneToMany
     private List<Jogador> jogadoresVitoriososRodada;
 
+    private String resultadoRodada;
+
 
     public void findJogadoresVitoriosos(){
 
@@ -51,7 +53,13 @@ public class Rodada {
         this.jogadoresVitoriososRodada = jogadoresVitoriososRodada;
     }
 
+    public String getResultadoRodada() {
+        return resultadoRodada;
+    }
 
+    public void setResultadoRodada(String resultadoRodada) {
+        this.resultadoRodada = resultadoRodada;
+    }
 
     public Long getId() {
         return id;

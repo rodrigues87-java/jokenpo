@@ -1,6 +1,7 @@
 package com.auctus.jokenpo.services;
 
 
+import com.auctus.jokenpo.enums.ResultadoRodada;
 import com.auctus.jokenpo.models.*;
 import com.auctus.jokenpo.repository.RegrasRepository;
 import com.auctus.jokenpo.repository.RodadaRepository;
@@ -19,7 +20,7 @@ public class RodadaService {
     RegrasRepository regrasRepository;
 
 
-    public List<Rodada> findAll(){
+    public List<Rodada> findAll() {
         return rodadaRepository.findAll();
     }
 
@@ -27,26 +28,24 @@ public class RodadaService {
 
         List<Entrada> entradas = rodada.getEntradas();
 
-        if(entradas.size() <2){
+        if (entradas.size() < 2) {
             throw new RuntimeException("É necessário ter pelo menos 2 entradas");
         }
 
 
+        for (int i = 0; i < entradas.size(); i++) {
 
-        for (int i=0; i < entradas.size(); i++){
+            for (int j = 0; j < entradas.size(); j++) {
 
-            for(int j= 0; j < entradas.size(); j++){
-
-                if(j>i){
-                    if(entradas.get(i).getJogada() != entradas.get(j).getJogada()){
+                if (j > i) {
+                    if (entradas.get(i).getJogada() != entradas.get(j).getJogada()) {
                         System.out.println(entradas.get(i).getId() + " e " + entradas.get(j).getId());
 
                         Regras regras = regrasRepository.findRegrasByJogadaOfencoraAndJogadaDefencora(entradas.get(i).getJogada(), entradas.get(j).getJogada());
 
-                        if(regras.getVitoria_ofencora()){
+                        if (regras.getVitoria_ofencora()) {
                             entradas.get(i).adicionarVitoria();
-                        }
-                        else {
+                        } else {
                             entradas.get(j).adicionarVitoria();
                         }
                     }
@@ -60,8 +59,17 @@ public class RodadaService {
 
         rodada.findJogadoresVitoriosos();
 
-        if (rodada.getJogadoresVitoriososRodada().size() > 1 ){
-            rodadaRepository.save(rodada);
+        int quantidadeJogadores = rodada.getJogadoresVitoriososRodada().size();
+
+        switch (quantidadeJogadores) {
+            case 0:
+                rodada.setResultadoRodada(ResultadoRodada.EMPATE_NAO_CONCLUSIVO.getDescricao());
+                break;
+            case 1:
+                rodada.setResultadoRodada(ResultadoRodada.VITORIA.getDescricao());
+                break;
+            default:
+                rodada.setResultadoRodada(ResultadoRodada.EMPATE_VITORIOSO.getDescricao());
 
         }
 
@@ -69,17 +77,16 @@ public class RodadaService {
     }
 
 
-    public Rodada findById(Long id){
+    public Rodada findById(Long id) {
 
         Rodada rodada = rodadaRepository.findRodadaById(id);
 
-        if (rodada == null){
+        if (rodada == null) {
             throw new RuntimeException("rodada não encontrada");
         }
 
         return rodada;
     }
-
 
 
 }
