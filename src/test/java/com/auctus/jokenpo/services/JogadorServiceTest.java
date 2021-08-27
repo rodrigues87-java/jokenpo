@@ -71,7 +71,7 @@ class JogadorServiceTest {
     void testEDelete() {
         Jogador person = new Jogador(1L, "paulo");
 
-        doNothing().when(person);
+        doNothing().when(jogadorService).delete(person.getId());
 
         jogadorService.delete(person.getId());
 

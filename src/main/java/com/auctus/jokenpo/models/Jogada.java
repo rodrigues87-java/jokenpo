@@ -15,6 +15,12 @@ public class Jogada implements Serializable {
 
     private String nome;
 
+    public Jogada(long id, String nome) {
+        this.nome = nome;
+        this.id = id;
+
+    }
+
     public String getNome() {
         return nome;
     }
